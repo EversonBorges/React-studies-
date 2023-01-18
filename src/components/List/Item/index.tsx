@@ -8,7 +8,9 @@ interface Props extends ITarefa{
 export default function Item({tarefa, tempo, completado, selecionado, id, selectTask}: Props){
     
     return(
-            <li className={`${style.item} ${selecionado ? style.itemSelecionado : ''}`} onClick={() => selectTask(
+            <li 
+                className={`${style.item} ${selecionado ? style.itemSelecionado : ''} ${completado ? style.itemCompletado : ''}`} 
+                onClick={() => !completado && selectTask(
                 {
                     tarefa,
                     tempo,
@@ -19,6 +21,7 @@ export default function Item({tarefa, tempo, completado, selecionado, id, select
             )}>
                 <h3> {tarefa} </h3>
                 <span> {tempo} </span>
+                {completado && <span className={style.concluido} aria-label="tarefa completa"></span>}
             </li>
     )
 }
